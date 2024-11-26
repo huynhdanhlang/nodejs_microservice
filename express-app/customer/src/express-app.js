@@ -1,25 +1,24 @@
-const express = require('express');
-const cors  = require('cors');
-const { customer, appEvents } = require('./api');
-const { CreateChannel, SubscribeMessage } = require('./utils')
+const express = require("express");
+const cors = require("cors");
+const { customer, appEvents } = require("./api");
+const { CreateChannel, SubscribeMessage } = require("./utils");
+const ErrorHandler = require("./utils/error-handler");
 
 /**
- * 
- * @param {express.Application} app 
+ *
+ * @param {express.Application} app
  */
 module.exports = async (app) => {
+  app.use(express.json());
+  app.use(cors());
+  app.use(express.static(__dirname + "/public"));
+  app.use((req, res, next) => ErrorHandler(null, req, res, next));
 
-    app.use(express.json());
-    app.use(cors());
-    app.use(express.static(__dirname + '/public'))
+  //api
+  // appEvents(app);
 
-    //api
-    // appEvents(app);
+  const channel = await CreateChannel();
 
-    const channel = await CreateChannel()
-
-    
-    customer(app, channel);
-    // error handling
-    
-}
+  customer(app, channel);
+  // error handling
+};
