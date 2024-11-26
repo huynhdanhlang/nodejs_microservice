@@ -1,8 +1,13 @@
 const CustomerService = require('../services/customer-service');
 const  UserAuth = require('./middlewares/auth');
 const { SubscribeMessage } = require('../utils');
+const express = require('express');
 
-
+/**
+ * 
+ * @param {express.Application} app 
+ * @param {import('amqplib').Channel} channel 
+ */
 module.exports = (app, channel) => {
     
     const service = new CustomerService();

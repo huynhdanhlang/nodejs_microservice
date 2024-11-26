@@ -3,6 +3,10 @@ const cors  = require('cors');
 const { customer, appEvents } = require('./api');
 const { CreateChannel, SubscribeMessage } = require('./utils')
 
+/**
+ * 
+ * @param {express.Application} app 
+ */
 module.exports = async (app) => {
 
     app.use(express.json());

@@ -35,6 +35,11 @@ module.exports.GenerateSignature = async (payload) => {
   }
 };
 
+/**
+ * 
+ * @param {import("express").Request} req 
+ * @returns 
+ */
 module.exports.ValidateSignature = async (req) => {
   try {
     const signature = req.get("Authorization");
@@ -68,11 +73,22 @@ module.exports.CreateChannel = async () => {
   }
 };
 
+/**
+ * 
+ * @param {import("amqplib").Channel} channel 
+ * @param {*} service 
+ * @param {*} msg 
+ */
 module.exports.PublishMessage = (channel, service, msg) => {
   channel.publish(EXCHANGE_NAME, service, Buffer.from(msg));
   console.log("Sent: ", msg);
 };
 
+/**
+ * 
+ * @param {import("amqplib").Channel} channel 
+ * @param {*} service 
+ */
 module.exports.SubscribeMessage = async (channel, service) => {
   await channel.assertExchange(EXCHANGE_NAME, "direct", { durable: true });
   const q = await channel.assertQueue("", { exclusive: true });
