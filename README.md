@@ -1,4 +1,7 @@
 # This repo is forked from repo: [nodejs_microservice](https://github.com/codergogoi/nodejs_microservice) (Author: [codergogoi](https://github.com/codergogoi))
+
+ - About the purpose, the repo will maintain a base on the old repo and can add some features in the future.
+
 # NodeJS Microservice
 NodeJS Microservice Architecture Example with realtime project
 
